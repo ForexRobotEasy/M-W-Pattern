@@ -1,0 +1,72 @@
+
+// Developer: Forex Robot Easy Team
+// Developer's site: forexroboteasy.com
+
+// M W Pattern Trading Robot
+
+// Import necessary libraries
+#include <Trade\PositionInfo.mqh>
+#include <Trade\Order\TradeOrder.mqh>
+
+// Define constants
+const double STOP_LOSS = 50; // Stop loss in pips
+const double TAKE_PROFIT = 100; // Take profit in pips
+
+// Function to identify and analyze M or W patterns
+bool identifyMWPattern()
+{
+   // TODO: Implement logic to identify and analyze M or W patterns
+   // Scan price chart for swing highs and swing lows
+
+   // If M pattern is detected
+   if (isMPattern())
+   {
+      // Place a sell order
+      TradeOrder sellOrder;
+      sellOrder.CloseAll(); // Close any existing positions
+      sellOrder.OpenSell(0.01, Symbol(), Ask, Ask - STOP_LOSS * Point, Ask + TAKE_PROFIT * Point);
+      return true;
+   }
+   // If W pattern is detected
+   else if (isWPattern())
+   {
+      // Place a buy order
+      TradeOrder buyOrder;
+      buyOrder.CloseAll(); // Close any existing positions
+      buyOrder.OpenBuy(0.01, Symbol(), Bid, Bid + STOP_LOSS * Point, Bid - TAKE_PROFIT * Point);
+      return true;
+   }
+   
+   return false;
+}
+
+// Function to check if M pattern is present
+bool isMPattern()
+{
+   // TODO: Implement logic to check if M pattern is present
+   // Analyze swing highs and swing lows
+   
+   return true; // Placeholder for demonstration purposes
+}
+
+// Function to check if W pattern is present
+bool isWPattern()
+{
+   // TODO: Implement logic to check if W pattern is present
+   // Analyze swing highs and swing lows
+   
+   return true; // Placeholder for demonstration purposes
+}
+
+// Entry point of the program
+void OnTick()
+{
+   if (identifyMWPattern())
+   {
+      // M or W pattern detected, take appropriate action
+   }
+   else
+   {
+      // No M or W pattern detected, continue normal trading operations
+   }
+}
